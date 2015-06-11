@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <title>{% block title %}HotPLDeals{% endblock %}</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>{% block page_title %}HotPLDeals{% endblock %}</h1>
+        </div>
+        <div id="content" class="row">
+            <div class="col-lg-9">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-lg-3">
+                <a class="btn btn-primary" href="{% url 'deals:create' %}" role="button">Dodaj Okazję</a>
+                {% block sidebar %}{% endblock %}
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

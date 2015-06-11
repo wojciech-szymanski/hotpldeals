@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Deals
+{% endblock %}
+
+{% block content %}
+    {% if latest_deals_list %}
+        {% for deal in latest_deals_list %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p>
+                        <a href="{% url 'deals:delete' deal.id %}" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                    </p>
+                    <h2 class="panel-title">
+                        <a href="{% url 'deals:detail' deal.id %}">{{ deal.title}}</a>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <span>{{ deal.created_date }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No deals are available.</p>
+    {% endif %}
+{% endblock %}
