@@ -6,4 +6,17 @@
 
 {% block content %}
 	<p>Created: {{ deal.created_date }}</p>
+	{% if deal.upload %}
+		<img src="/media/{{ deal.upload }}" />
+	{% endif %}
+	<form method="post" action="{% url 'deals:vote' deal.id %}">
+		{% csrf_token %}
+		<input type="hidden" name="vote" value="1" />
+		<button class="btn btn-danger">Hot {{ deal.votes_up }}</button>
+	</form>
+	<form method="post" action="{% url 'deals:vote' deal.id %}">
+		{% csrf_token %}
+		<input type="hidden" name="vote" value="0" />
+		<button class="btn btn-default">Cold {{ deal.votes_down }}</button>
+	</form>
 {% endblock %}

@@ -9,6 +9,9 @@ class Deal(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True, blank=True)
+    votes_up = models.IntegerField(default=0)
+    votes_down = models.IntegerField(default=0)
+    upload = models.FileField(upload_to="uploads/%Y/%m/%d/", default=0)
 
     def __unicode__(self):
         return self.title

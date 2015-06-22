@@ -17,7 +17,7 @@ class DetailView(generic.DetailView):
 
 def add_model(request):
 
-    form = DealForm(request.POST or None)
+    form = DealForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         deal = form.save()
         return HttpResponseRedirect(reverse('deals:detail', args=(deal.id,)));
@@ -44,3 +44,16 @@ def delete_model(request, pk):
         return HttpResponseRedirect(reverse('deals:index'));
 
     return render(request, "deals/deal_confirm_delete.html", {'object': deal, 'title': 'Confirm deleting "' + deal.title + '"'})
+
+def vote(request, pk):
+
+    deal = get_object_or_404(Deal, pk=pk)
+
+    if request.method == 'POST' and request.POST['vote']:
+        if request.POST['vote'] == '1':
+            deal.votes_up += 1
+        if request.POST['vote'] == '0':
+            deal.votes_down += 1
+        deal.save()
+
+    return HttpResponseRedirect(reverse('deals:detail', args=(deal.id,)));

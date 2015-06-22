@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^create/$', views.add_model, name='create'),
     url(r'^(?P<pk>[0-9]+)/edit/$', views.update_model, name='update'),
-    url(r'^(?P<pk>[0-9]+)/delete/$', views.delete_model, name='delete')
+    url(r'^(?P<pk>[0-9]+)/delete/$', views.delete_model, name='delete'),
+    url(r'^(?P<pk>[0-9]+)/vote/$', views.vote, name='vote'),
 ]
